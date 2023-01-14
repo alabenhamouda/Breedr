@@ -3,6 +3,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { UserModule } from './user/user.module';
+import { AnimalModule } from './animal/animal.module';
+import { BreedingRequestModule } from './breeding-request/breeding-request.module';
 import configuration from './config/configuration';
 
 @Module({
@@ -17,6 +20,9 @@ import configuration from './config/configuration';
         configService.get('database'),
       inject: [ConfigService],
     }),
+    UserModule,
+    AnimalModule,
+    BreedingRequestModule,
   ],
   controllers: [AppController],
   providers: [AppService],
