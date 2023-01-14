@@ -1,5 +1,5 @@
 li > a.active {
-  color: #f97924;
+  color: #FEBB59;
 }
 li > a {
   color: rgb(252, 252, 252);
@@ -10,6 +10,10 @@ li > a {
   left: 1227px;
   top: 20px;
   border-radius: 36px;
+  border: none;
   padding: 8px 16px 8px 16px;
   background-color: #febb59;
+}
+a {
+  font-size: 25px;
 }
