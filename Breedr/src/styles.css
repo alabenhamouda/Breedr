@@ -1,40 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
-.bg-orange{
-    background-color: #fee8c6;
+.bg-orange {
+  background-color: #fee8c6;
 }
-.bg-darkOrange{
-    color: #FEBB59;
+.bg-darkOrange {
+  color: #febb59;
 }
-.btn-GetStarted {
-    height: 36px;
-width: 113px;
-left: 1227px;
-top: 20px;
-border-radius: 36px;
-padding: 8px 16px 8px 16px;
-background-color: #FEBB59;
+.margin-right-50 {
+  margin-right: 50px;
 }
-.margin-right-50{
-    margin-right: 50px;
+.margin-left-50 {
+  margin-left: 50px;
 }
-.margin-left-50{
-    margin-left: 50px;
-}
-.moto-container{
-height: 400px;
-width: 1261px;
-left: 105px;
-top: 111px;
-border-radius: 20px;
-background: #FED393;
-}
-.moto-position{
-    position: relative;
-    left: 150px;
-    top: 150px;
-}
-.dog-position{
-    position: relative;
-    left: 350px;
-    top: -150px;
+
+body {
+  background-color: #ffdeaf;
 }

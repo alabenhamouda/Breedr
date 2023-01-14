@@ -1,2 +1,15 @@
-li > a.active { color: #F97924 }
-li > a { color : rgb(252, 252, 252)}
+li > a.active {
+  color: #f97924;
+}
+li > a {
+  color: rgb(252, 252, 252);
+}
+.btn-GetStarted {
+  height: 36px;
+  width: 113px;
+  left: 1227px;
+  top: 20px;
+  border-radius: 36px;
+  padding: 8px 16px 8px 16px;
+  background-color: #febb59;
+}

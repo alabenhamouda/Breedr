@@ -1,0 +1,18 @@
+.moto-container {
+  height: 400px;
+  width: 1261px;
+  left: 105px;
+  top: 111px;
+  border-radius: 20px;
+  background: #fed393;
+}
+.moto-position {
+  position: relative;
+  left: 150px;
+  top: 150px;
+}
+.dog-position {
+  position: relative;
+  left: 350px;
+  top: -150px;
+}
