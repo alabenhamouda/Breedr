@@ -1,9 +1,9 @@
 import { Animal } from './../../animal/entities/animal.entity';
-import { Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Entity, ManyToOne, ObjectIdColumn } from 'typeorm';
 
 @Entity('breeding_requests')
 export class BreedingRequest {
-  @PrimaryGeneratedColumn('uuid')
+  @ObjectIdColumn()
   id: string;
 
   @ManyToOne(() => Animal, (animal) => animal.requestsFrom)

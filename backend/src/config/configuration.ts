@@ -1,11 +1,11 @@
 export default () => ({
   database: {
-    type: 'mysql',
-    host: process.env.DB_HOST,
-    port: +process.env.DB_PORT,
-    username: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
+    type: 'mongodb',
+    url: process.env.MONGODB_CONNECTION_STRING,
     database: process.env.DATABASE,
+    ssl: true,
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
     synchronize: true,
     autoLoadEntities: true,
     logging: false,
