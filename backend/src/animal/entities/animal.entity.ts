@@ -3,11 +3,17 @@ import { BreedingRequest } from './../../breeding-request/entities/breeding-requ
 import { Timestamp } from './../../util/entities/timestamp.entity';
 import { Gender } from './../../util/enums/gender.enum';
 import { User } from './../../user/entities/user.entity';
-import { Column, Entity, ManyToOne, OneToMany, ObjectIdColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity('animals')
 export class Animal extends Timestamp {
-  @ObjectIdColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @ManyToOne((type) => User, (user) => user.animals)
