@@ -1,3 +1,4 @@
+import { EncodeAnimalImagesInterceptor } from './encode-animal-images.interceptor';
 import {
   Controller,
   Get,
@@ -8,6 +9,7 @@ import {
   Delete,
   Query,
   ParseBoolPipe,
+  UseInterceptors,
 } from '@nestjs/common';
 import { AnimalType } from 'src/util/enums/animal.enum';
 import { Gender } from 'src/util/enums/gender.enum';
@@ -24,6 +26,7 @@ export class AnimalController {
     return this.animalService.create(createAnimalDto);
   }
 
+  @UseInterceptors(EncodeAnimalImagesInterceptor)
   @Get()
   findAll(@Query('bringImages', ParseBoolPipe) shouldBringImages: boolean) {
     return this.animalService.findAll(shouldBringImages);
@@ -47,6 +50,7 @@ export class AnimalController {
     return this.animalService.getAnimalsByFilter(filter);
   }
 
+  @UseInterceptors(EncodeAnimalImagesInterceptor)
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.animalService.findOne(id);

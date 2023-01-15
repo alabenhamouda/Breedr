@@ -15,7 +15,7 @@ export class AnimalService {
     private storageService: DataStorageService,
   ) {}
 
-  private async convertImagesToBase64(animal: Animal): Promise<void> {
+  async convertImagesToBase64(animal: Animal): Promise<void> {
     if (!animal.images) {
       return;
     }
@@ -47,9 +47,6 @@ export class AnimalService {
         images: true,
       },
     });
-    for (const animal of animals) {
-      await this.convertImagesToBase64(animal);
-    }
     return animals;
   }
 
@@ -60,7 +57,6 @@ export class AnimalService {
         images: true,
       },
     });
-    await this.convertImagesToBase64(animal);
     return animal;
   }
 
