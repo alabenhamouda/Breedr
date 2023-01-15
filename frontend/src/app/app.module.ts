@@ -11,7 +11,14 @@ import { LoginComponent } from './login/login.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
+import {MatSelectModule} from "@angular/material/select"
 import {MatButtonModule} from "@angular/material/button";
+import { AnimalsListComponent } from './animals-list/animals-list.component';
+import { AnimalComponent } from './animal/animal.component';
+import { AnimalsFilterComponent } from './animals-filter/animals-filter.component';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { HttpClientModule } from '@angular/common/http';
 import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
@@ -21,8 +28,23 @@ import {ReactiveFormsModule} from "@angular/forms";
     HomeComponent,
     AnimalDetailsComponent,
     LoginComponent,
+    AnimalsListComponent,
+    AnimalComponent,
+    AnimalsFilterComponent,
   ],
-    imports: [BrowserModule, AppRoutingModule, NgImageSliderModule, NoopAnimationsModule, MatInputModule, MatIconModule, MatButtonModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgImageSliderModule,
+    NoopAnimationsModule,
+    MatInputModule,
+    MatIconModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
