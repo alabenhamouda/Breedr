@@ -2,18 +2,10 @@ import { BreedingRequest } from './../../breeding-request/entities/breeding-requ
 import { Timestamp } from './../../util/entities/timestamp.entity';
 import { Gender } from './../../util/enums/gender.enum';
 import { User } from './../../user/entities/user.entity';
-import {
-  Column,
-  Entity,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-  OneToMany,
-  ObjectIdColumn,
-} from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany, ObjectIdColumn } from 'typeorm';
 
 @Entity('animals')
 export class Animal extends Timestamp {
-  @PrimaryGeneratedColumn('uuid')
   @ObjectIdColumn()
   id: string;
 
@@ -30,7 +22,7 @@ export class Animal extends Timestamp {
     type: 'enum',
     enum: Gender,
   })
-  gender: string;
+  gender: Gender;
 
   @Column('int')
   age: number;
