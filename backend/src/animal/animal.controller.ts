@@ -1,4 +1,7 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+import { animalFilters } from 'src/util/entities/animalFilters.entity';
+import { AnimalType } from 'src/util/enums/animal.enum';
+import { Gender } from 'src/util/enums/gender.enum';
 import { AnimalService } from './animal.service';
 import { CreateAnimalDto } from './dto/create-animal.dto';
 import { UpdateAnimalDto } from './dto/update-animal.dto';
@@ -10,6 +13,23 @@ export class AnimalController {
   @Post()
   create(@Body() createAnimalDto: CreateAnimalDto) {
     return this.animalService.create(createAnimalDto);
+  }
+
+  @Get()
+  findByFilters(@Query('gender') gender: Gender,
+                @Query('type') animal: AnimalType,
+                @Query('breed') breed: string){
+    var filter = {};  
+    if(gender){
+      filter["gender"]=gender;
+    }
+    if(animal){
+      filter["type"]=animal;
+    }
+    if(breed){
+      filter["breed"]=breed;
+    }
+    return this.animalService.getAnimalsByFilter(filter)
   }
 
   @Get()

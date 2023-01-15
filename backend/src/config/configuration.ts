@@ -5,7 +5,7 @@ export default () => ({
     port: +process.env.DB_PORT,
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
-    database: process.env.DATABASE,
+    database: process.env.MONGODB_DATABASE,
     synchronize: true,
     autoLoadEntities: true,
     logging: false,

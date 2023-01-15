@@ -8,11 +8,13 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
   OneToMany,
+  ObjectIdColumn,
 } from 'typeorm';
 
 @Entity('animals')
 export class Animal extends Timestamp {
   @PrimaryGeneratedColumn('uuid')
+  @ObjectIdColumn()
   id: string;
 
   @ManyToOne((type) => User, (user) => user.animals)
