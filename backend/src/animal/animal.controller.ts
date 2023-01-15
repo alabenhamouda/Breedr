@@ -10,6 +10,7 @@ import {
   Query,
   ParseBoolPipe,
   UseInterceptors,
+  DefaultValuePipe,
 } from '@nestjs/common';
 import { AnimalType } from 'src/util/enums/animal.enum';
 import { Gender } from 'src/util/enums/gender.enum';
@@ -28,7 +29,10 @@ export class AnimalController {
 
   @UseInterceptors(EncodeAnimalImagesInterceptor)
   @Get()
-  findAll(@Query('bringImages', ParseBoolPipe) shouldBringImages: boolean) {
+  findAll(
+    @Query('shouldBringImages', new DefaultValuePipe(false))
+    shouldBringImages: boolean,
+  ) {
     return this.animalService.findAll(shouldBringImages);
   }
 
@@ -52,8 +56,12 @@ export class AnimalController {
 
   @UseInterceptors(EncodeAnimalImagesInterceptor)
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.animalService.findOne(id);
+  findOne(
+    @Param('id') id: string,
+    @Query('shouldBringImages', new DefaultValuePipe(false))
+    shouldBringImages: boolean,
+  ) {
+    return this.animalService.findOne(id, shouldBringImages);
   }
 
   @Patch(':id')
