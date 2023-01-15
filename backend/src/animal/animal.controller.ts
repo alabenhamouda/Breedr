@@ -9,6 +9,8 @@ import {
   Query,
   ParseBoolPipe,
 } from '@nestjs/common';
+import { AnimalType } from 'src/util/enums/animal.enum';
+import { Gender } from 'src/util/enums/gender.enum';
 import { AnimalService } from './animal.service';
 import { CreateAnimalDto } from './dto/create-animal.dto';
 import { UpdateAnimalDto } from './dto/update-animal.dto';
@@ -25,6 +27,24 @@ export class AnimalController {
   @Get()
   findAll(@Query('bringImages', ParseBoolPipe) shouldBringImages: boolean) {
     return this.animalService.findAll(shouldBringImages);
+  }
+
+  findByFilters(
+    @Query('gender') gender: Gender,
+    @Query('type') animal: AnimalType,
+    @Query('breed') breed: string,
+  ) {
+    var filter = {};
+    if (gender) {
+      filter['gender'] = gender;
+    }
+    if (animal) {
+      filter['type'] = animal;
+    }
+    if (breed) {
+      filter['breed'] = breed;
+    }
+    return this.animalService.getAnimalsByFilter(filter);
   }
 
   @Get(':id')

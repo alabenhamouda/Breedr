@@ -2,16 +2,16 @@ import { AnimalImage } from './entities/animal-image.entity';
 import { DataStorageService } from './../shared/data-storage/data-storage.service';
 import { Animal } from './entities/animal.entity';
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { FindManyOptions, Repository } from 'typeorm';
 import { CreateAnimalDto } from './dto/create-animal.dto';
 import { UpdateAnimalDto } from './dto/update-animal.dto';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 
 @Injectable()
 export class AnimalService {
   constructor(
     @InjectRepository(Animal)
-    private animalsRepository: Repository<Animal>,
+    private animalRepository: Repository<Animal>,
     private storageService: DataStorageService,
   ) {}
 
@@ -33,16 +33,16 @@ export class AnimalService {
   }
 
   create(createAnimalDto: CreateAnimalDto) {
-    const animal = this.animalsRepository.create(createAnimalDto);
+    const animal = this.animalRepository.create(createAnimalDto);
     animal.images = [];
-    return this.animalsRepository.save(animal);
+    return this.animalRepository.save(animal);
   }
 
   async findAll(shouldBringImages: boolean): Promise<Animal[]> {
     if (!shouldBringImages) {
-      return this.animalsRepository.find();
+      return this.animalRepository.find();
     }
-    const animals = await this.animalsRepository.find({
+    const animals = await this.animalRepository.find({
       relations: {
         images: true,
       },
@@ -54,7 +54,7 @@ export class AnimalService {
   }
 
   async findOne(id: string): Promise<Animal> {
-    const animal = await this.animalsRepository.findOne({
+    const animal = await this.animalRepository.findOne({
       where: { id },
       relations: {
         images: true,
@@ -70,5 +70,11 @@ export class AnimalService {
 
   remove(id: number) {
     return `This action removes a #${id} animal`;
+  }
+
+  getAnimalsByFilter(filter) {
+    return this.animalRepository.findAndCount(
+      filter as FindManyOptions<Animal>,
+    );
   }
 }

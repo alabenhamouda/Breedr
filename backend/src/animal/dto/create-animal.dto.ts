@@ -1,4 +1,5 @@
-import { Gender } from './../../util/enums/gender.enum';
+import { Gender } from 'src/util/enums/gender.enum';
+
 export class CreateAnimalDto {
   type: string;
   gender: Gender;
