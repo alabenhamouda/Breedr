@@ -10,4 +10,5 @@ export default () => ({
     autoLoadEntities: true,
     logging: true,
   },
+  storageDirectory: process.env.STORAGE_DIRECTORY,
 });

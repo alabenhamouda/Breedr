@@ -1,3 +1,4 @@
+import { AnimalImage } from './animal-image.entity';
 import { BreedingRequest } from './../../breeding-request/entities/breeding-request.entity';
 import { Timestamp } from './../../util/entities/timestamp.entity';
 import { Gender } from './../../util/enums/gender.enum';
@@ -33,8 +34,8 @@ export class Animal extends Timestamp {
   @Column('int')
   age: number;
 
-  @Column('simple-json')
-  images: string[];
+  @OneToMany(() => AnimalImage, (image) => image.animal)
+  images: AnimalImage[] | string[];
 
   @OneToMany(() => BreedingRequest, (request) => request.from)
   requestsFrom: BreedingRequest[];
