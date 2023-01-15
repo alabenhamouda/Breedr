@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { AnimalModule } from './animal/animal.module';
 import { BreedingRequestModule } from './breeding-request/breeding-request.module';
+import { SharedModule } from './shared/shared.module';
 import configuration from './config/configuration';
 
 @Module({
@@ -23,6 +24,7 @@ import configuration from './config/configuration';
     UserModule,
     AnimalModule,
     BreedingRequestModule,
+    SharedModule,
   ],
   controllers: [AppController],
   providers: [AppService],

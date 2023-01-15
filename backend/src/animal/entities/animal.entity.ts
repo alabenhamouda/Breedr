@@ -28,7 +28,7 @@ export class Animal extends Timestamp {
     type: 'enum',
     enum: Gender,
   })
-  gender: string;
+  gender: Gender;
 
   @Column('int')
   age: number;

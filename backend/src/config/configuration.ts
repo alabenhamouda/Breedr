@@ -8,6 +8,6 @@ export default () => ({
     database: process.env.DATABASE,
     synchronize: true,
     autoLoadEntities: true,
-    logging: false,
+    logging: true,
   },
 });
