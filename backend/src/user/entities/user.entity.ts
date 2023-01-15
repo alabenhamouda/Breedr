@@ -1,10 +1,10 @@
 import { Animal } from './../../animal/entities/animal.entity';
 import { Timestamp } from './../../util/entities/timestamp.entity';
-import { Column, Entity, ObjectIdColumn, OneToMany } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('users')
 export class User extends Timestamp {
-  @ObjectIdColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
