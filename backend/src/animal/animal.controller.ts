@@ -6,6 +6,8 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
+  ParseBoolPipe,
 } from '@nestjs/common';
 import { AnimalService } from './animal.service';
 import { CreateAnimalDto } from './dto/create-animal.dto';
@@ -21,8 +23,8 @@ export class AnimalController {
   }
 
   @Get()
-  findAll() {
-    return this.animalService.findAll();
+  findAll(@Query('bringImages', ParseBoolPipe) shouldBringImages: boolean) {
+    return this.animalService.findAll(shouldBringImages);
   }
 
   @Get(':id')
