@@ -20,8 +20,6 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
 import {ReactiveFormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
-import {MatMenuModule} from "@angular/material/menu";
 import {AuthGuard} from "./guards/auth.guard";
 
 @NgModule({
