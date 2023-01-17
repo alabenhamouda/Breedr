@@ -14,9 +14,8 @@ import {
   HttpException,
   UploadedFiles,
   UseGuards,
-  Req,
-  ParseBoolPipe,
-} from '@nestjs/common';
+  Req, Res
+} from "@nestjs/common";
 import { AnimalType } from 'src/util/enums/animal.enum';
 import { Gender } from 'src/util/enums/gender.enum';
 import { AnimalService } from './animal.service';
@@ -26,6 +25,8 @@ import { diskStorage } from 'multer';
 import configuration from 'src/config/configuration';
 import { AuthGuard } from '@nestjs/passport/dist/auth.guard';
 import { Animal } from './entities/animal.entity';
+import { GetUser } from "../user/decorators/user.decorator";
+import { User } from "../user/entities/user.entity";
 let path = require('path');
 
 @Controller('animals')
@@ -78,12 +79,10 @@ export class AnimalController {
   @UseInterceptors(EncodeAnimalImagesInterceptor)
   @Get()
   findAll(
-      @Query('userId', new DefaultValuePipe(null))
-      userId,
-      @Query('shouldBringImages', new DefaultValuePipe(false))
-      shouldBringImages: boolean,
+    @Query('shouldBringImages', new DefaultValuePipe(false))
+    shouldBringImages: boolean,
   ) {
-    return this.animalService.findAll(userId,shouldBringImages);
+    return this.animalService.findAll(shouldBringImages);
   }
 
   findByFilters(
@@ -91,7 +90,7 @@ export class AnimalController {
     @Query('type') animal: AnimalType,
     @Query('breed') breed: string,
   ) {
-    var filter = {};
+    const filter = {};
     if (gender) {
       filter['gender'] = gender;
     }
@@ -129,5 +128,11 @@ export class AnimalController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.animalService.remove(+id);
+  }
+  @UseGuards(AuthGuard('jwt'))
+  @UseInterceptors(EncodeAnimalImagesInterceptor)
+  @Get('my/animals')
+  async getAnimalsByUser(@GetUser() user: User) {
+    return await this.animalService.getAnimalsByUser(user.id);
   }
 }

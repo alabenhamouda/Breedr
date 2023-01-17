@@ -17,16 +17,10 @@ import configuration from './config/configuration';
       envFilePath: '.env.local',
       load: [configuration],
     }),
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: process.env.DB_HOST,
-      port: +process.env.DB_PORT,
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DATABASE,
-      synchronize: true,
-      autoLoadEntities: true,
-      logging: false,
+    TypeOrmModule.forRootAsync({
+      useFactory: (configService: ConfigService) =>
+        configService.get('database'),
+      inject: [ConfigService],
     }),
     UserModule,
     AnimalModule,

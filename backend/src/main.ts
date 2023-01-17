@@ -23,12 +23,12 @@ async function bootstrap() {
   });
   const app = await NestFactory.create(AppModule);
   app.enableCors();
-  /*app.useGlobalPipes(
+  app.useGlobalPipes(
     new ValidationPipe({
-      whitelist: false,
+      whitelist: true,
       transform: true,
     }),
-  );*/
+  );
   await app.listen(3000);
 }
 bootstrap();

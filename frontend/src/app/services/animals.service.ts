@@ -4,24 +4,15 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Animal } from '../models/animal';
 import { addAnimalDto } from '../dto/addAnimalDto';
+import {BASE_URL, MY_ANIMALS_URL} from '../helpers/constants';
+import { FormRecord } from '@angular/forms';
 import { AuthService } from './auth.service';
-import {Constants} from "../constants/Constants";
-import {BASE_URL, LOGIN_URL} from "../helpers/constants";
 
 @Injectable({
   providedIn: 'root',
 })
 export class AnimalsService {
   constructor(private http: HttpClient, private authService: AuthService) { }
-
-  getAnimals(userId:string,
-                     shouldBringImages: boolean,
-                     shouldEncodeImages: boolean): Observable<Animal[]> {
-    const url = `${Constants.API_URL}/animals/`;
-    return this.http.get<Animal[]>(url, {
-      params: { userId ,shouldBringImages },
-    });
-  }
 
   getAnimal(
     id: string,
@@ -86,6 +77,15 @@ export class AnimalsService {
         },
       ];
     }
+  }
+  getAnimalsByUser(ownerId : string){
+    const  token = this.authService.getToken()
+    const shouldEncodeImages = true;
+    return this.http.get<Animal[]>(BASE_URL+MY_ANIMALS_URL,{
+      params: {  shouldEncodeImages },
+      responseType: 'json',
+      headers: new HttpHeaders().append('Authorization', `Bearer ${token!.substring(1, token!.length - 1)}`)
+    })
   }
 }
 
