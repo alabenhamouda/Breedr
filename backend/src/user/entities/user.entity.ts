@@ -17,7 +17,7 @@ export class User extends Timestamp {
   @Column()
   phoneNumber: string;
 
-  @Column({ select: false })
+  @Column()
   password: string;
   @Column({
     select: false,
