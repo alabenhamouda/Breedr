@@ -37,8 +37,6 @@ export class Animal extends Timestamp {
   @OneToMany(() => AnimalImage, (image) => image.animal)
   images: AnimalImage[] | string[];
 
-  @OneToMany(() => BreedingRequest, (request) => request.from)
-  requestsFrom: BreedingRequest[];
 
   @OneToMany(() => BreedingRequest, (request) => request.to)
   requestsTo: BreedingRequest[];

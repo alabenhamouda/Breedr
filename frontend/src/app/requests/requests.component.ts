@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {RequestsService} from "../services/requests.service";
+import {Request} from "../models/request";
+import {Animal} from "../models/animal";
+import {AnimalsService} from "../services/animals.service";
 
 @Component({
   selector: 'app-requests',
@@ -6,24 +10,36 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./requests.component.css']
 })
 export class RequestsComponent implements OnInit {
-  incomingRequests = [{from:{name:'a'},to:{name:'b'}},{from:{name:'a'},to:{name:'c'}},{from:{name:'a'},to:{name:'b'}},{from:{name:'a'},to:{name:'b'}}];
+  incomingRequests: Request[] = [];
+  myAnimals :Animal[]=[];
   requestsByAnimal : any ;
   myRequests = [];
-  myAnimals = [{name:'b'},{name:'c'},{name:'d'}]
-  constructor() { }
+  userId :string = "";
+  constructor(private requestsService : RequestsService,
+              private animalsService : AnimalsService) { }
 
   ngOnInit(): void {
-    this.getRequestsByAnimal();
+    this.userId ='5642a218-95c1-11ed-9633-7c8ae194b499';
+    this.animalsService.getAnimals(this.userId,true,true).subscribe(x=>{
+      this.myAnimals = x;
+    });
+
+    this.requestsService.getBreedingRequests().subscribe((requests)=>{
+      this.incomingRequests = requests;
+      this.getRequestsByAnimal();
+      console.log(this.requestsByAnimal)
+
+    })
   }
 
   getRequestsByAnimal(){
-    const groupByAnimal = <T, K extends keyof any>(arr: T[], key: (i: T) => K) =>
+    const groupByAnimal = <T, K extends keyof any>(arr: T[], key: (i: T ) => K) =>
       arr.reduce((groups, item) => {
         (groups[key(item)] ||= []).push(item);
         return groups;
       }, {} as Record<K, T[]>);
 
-    this.requestsByAnimal = groupByAnimal(this.incomingRequests , i => i.to.name);
+    this.requestsByAnimal = groupByAnimal(this.incomingRequests , i =>  (i.to?.id ? i.to.id : '') );
   }
   approve(request:any){
     console.log(request)

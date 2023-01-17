@@ -21,6 +21,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
 import {ReactiveFormsModule} from "@angular/forms";
 import {AuthGuard} from "./guards/auth.guard";
+import {RequestsComponent} from "./requests/requests.component";
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import {AuthGuard} from "./guards/auth.guard";
     AnimalDetailsComponent,
     LoginComponent,
     AnimalsListComponent,
+    RequestsComponent,
     AnimalComponent,
     AnimalsFilterComponent,
   ],

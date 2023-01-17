@@ -14,6 +14,8 @@ export class BreedingRequestController {
 
   @Get()
   findAll() {
+     const x= this.breedingRequestService.findAll();
+     x.then(y=> console.log(y));
     return this.breedingRequestService.findAll();
   }
 

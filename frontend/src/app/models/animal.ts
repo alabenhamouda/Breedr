@@ -1,7 +1,7 @@
 import { AnimalImage } from './animal-image';
 import { Gender } from './../Enums/genderEnum';
 export class Animal {
-  id: string | null = null;
+  id: string  = "";
   ownerId: string | null = null;
   type: string | null = null;
   gender: Gender | null = null;
