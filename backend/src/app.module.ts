@@ -1,4 +1,3 @@
-
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -8,8 +7,8 @@ import { UserModule } from './user/user.module';
 import { AnimalModule } from './animal/animal.module';
 import { BreedingRequestModule } from './breeding-request/breeding-request.module';
 import { SharedModule } from './shared/shared.module';
+import { AuthModule } from './auth/auth.module';
 import configuration from './config/configuration';
-import {AuthModule} from "./auth/auth.module";
 
 @Module({
   imports: [
@@ -33,9 +32,9 @@ import {AuthModule} from "./auth/auth.module";
     AnimalModule,
     BreedingRequestModule,
     SharedModule,
-    AuthModule
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

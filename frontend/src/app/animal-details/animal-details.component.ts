@@ -1,12 +1,14 @@
+import { RouteNames } from './../Route-Names.model';
 import { AnimalsService } from './../services/animals.service';
 import { Animal } from './../models/animal';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Gender } from '../Enums/genderEnum';
 import {RequestsService} from "../services/requests.service";
 import {Request} from "../models/request";
 import {User} from "../models/user";
 import {CreateBreedingRequestDto} from "../dto/create-breeding-request.dto";
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-animal-details',
@@ -23,8 +25,9 @@ export class AnimalDetailsComponent implements OnInit {
   user : User;
   constructor(
     private animalsService: AnimalsService,
+    private route: ActivatedRoute,
+    private router: Router
     private requestsService: RequestsService,
-    private route: ActivatedRoute
   ) {
     this.images = [
       {
@@ -43,31 +46,24 @@ export class AnimalDetailsComponent implements OnInit {
   }
 
   loadAnimal(id: string) {
-    this.animalsService.getAnimalWithImages(id).subscribe((animal) => {
-      this.animal = animal;
-      this.setAnimalImagesToDisplay(this.animal);
-    });
+    this.animalsService.getAnimalWithImages(id).subscribe(
+      (animal) => {
+        this.animal = animal;
+        this.setAnimalImagesToDisplay(this.animal);
+      },
+      (errorResponse: HttpErrorResponse) => {
+        if (errorResponse.status === 0) {
+          console.log('An error occured: ', errorResponse.error);
+        } else {
+          console.log('Backend responded with an error: ', errorResponse.error);
+          this.router.navigate([RouteNames.HOME]);
+        }
+      }
+    );
   }
 
   setAnimalImagesToDisplay(animal: Animal): void {
-    if (
-      animal.images.length > 0 &&
-      animal.images.every((image) => typeof image === 'string')
-    ) {
-      this.images = animal.images.map((image) => ({
-        image: image,
-        thumbImage: image,
-        alt: 'animal image',
-      }));
-    } else {
-      this.images = [
-        {
-          image: 'assets/blank_image.jpg',
-          thumbImage: 'assets/blank_image.jpg',
-          alt: 'animal image',
-        },
-      ];
-    }
+    this.images = this.animalsService.getAnimalImagesToDisplay(animal);
   }
 
   getGenderStr(gender: Gender | null): string {
