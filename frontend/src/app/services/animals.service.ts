@@ -7,6 +7,7 @@ import { addAnimalDto } from '../dto/addAnimalDto';
 import {BASE_URL, MY_ANIMALS_URL} from '../helpers/constants';
 import { FormRecord } from '@angular/forms';
 import { AuthService } from './auth.service';
+import { AnimalType } from '../Enums/animalTypeEnum';
 
 @Injectable({
   providedIn: 'root',
@@ -56,6 +57,16 @@ export class AnimalsService {
     return new Observable((sub) => {
       sub.error(new Error('token undefined'));
     });
+  }
+
+  getAllSpecies(): Array<any> {
+    const SpeciesList: Array<any> = [
+      { name: 'Dog', Id: AnimalType.Dog },
+      { name: 'Cat', Id: AnimalType.Cat },
+      { name: 'Goat', Id: AnimalType.Goat },
+      { name: 'Sheep', Id: AnimalType.Sheep },
+    ];
+    return SpeciesList;
   }
 
   getAnimalImagesToDisplay(animal: Animal): any[] {

@@ -91,9 +91,18 @@ export class AnimalService {
     return `This action removes a #${id} animal`;
   }
 
-  getAnimalsByFilter(filter) {
-    return this.animalRepository.findAndCount(
-      filter as FindManyOptions<Animal>,
+  getAnimalsByFilter(filter, shouldBringImages: boolean) {
+    if (!shouldBringImages) {
+      return this.animalRepository.find();
+    }
+
+    return this.animalRepository.find(
+      {
+        where: filter,
+        relations: {
+          images: true,
+        },
+      },
     );
   }
   async getAnimalsByUser(ownerId: string): Promise<Animal[]> {
