@@ -4,7 +4,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Animal } from '../models/animal';
 import { addAnimalDto } from '../dto/addAnimalDto';
-import { BASE_URL } from '../helpers/constants';
+import {BASE_URL, MY_ANIMALS_URL} from '../helpers/constants';
+import { FormRecord } from '@angular/forms';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -76,6 +77,15 @@ export class AnimalsService {
         },
       ];
     }
+  }
+  getAnimalsByUser(ownerId : string){
+    const  token = this.authService.getToken()
+    const shouldEncodeImages = true;
+    return this.http.get<Animal[]>(BASE_URL+MY_ANIMALS_URL,{
+      params: {  shouldEncodeImages },
+      responseType: 'json',
+      headers: new HttpHeaders().append('Authorization', `Bearer ${token!.substring(1, token!.length - 1)}`)
+    })
   }
 }
 

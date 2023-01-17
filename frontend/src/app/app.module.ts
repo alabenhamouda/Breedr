@@ -24,6 +24,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AnimalItemComponent } from './animal-item/animal-item.component';
 import { LoadingCircleComponent } from './loading-circle/loading-circle.component';
 import { DatepipePipe } from './datepipe.pipe';
+import {MyAnimalsComponent} from "./my-animals/my-animals.component";
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { DatepipePipe } from './datepipe.pipe';
     AnimalItemComponent,
     LoadingCircleComponent,
     DatepipePipe,
+    MyAnimalsComponent
   ],
   imports: [
     BrowserModule,
