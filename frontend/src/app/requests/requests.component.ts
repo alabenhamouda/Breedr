@@ -14,14 +14,17 @@ export class RequestsComponent implements OnInit {
   myAnimals :Animal[]=[];
   requestsByAnimal : any ;
   myRequests = [];
-  userId :string = "";
+  user :any;
+  userId: string ='';
   constructor(private requestsService : RequestsService,
               private animalsService : AnimalsService) { }
 
   ngOnInit(): void {
-    this.userId ='5642a218-95c1-11ed-9633-7c8ae194b499';
+    this.user = localStorage.getItem('user');
+    this.userId = this.user.id;
     this.animalsService.getAnimals(this.userId,true,true).subscribe(x=>{
       this.myAnimals = x;
+
     });
 
     this.requestsService.getBreedingRequests().subscribe((requests)=>{

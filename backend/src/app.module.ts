@@ -9,6 +9,7 @@ import { AnimalModule } from './animal/animal.module';
 import { BreedingRequestModule } from './breeding-request/breeding-request.module';
 import { SharedModule } from './shared/shared.module';
 import configuration from './config/configuration';
+import {AuthModule} from "./auth/auth.module";
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import configuration from './config/configuration';
     AnimalModule,
     BreedingRequestModule,
     SharedModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],

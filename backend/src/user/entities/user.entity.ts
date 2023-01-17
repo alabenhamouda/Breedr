@@ -2,6 +2,7 @@ import { Animal } from "./../../animal/entities/animal.entity";
 import { Timestamp } from "./../../util/entities/timestamp.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Role } from "../../auth/enum/role.enum";
+import {BreedingRequest} from "../../breeding-request/entities/breeding-request.entity";
 
 @Entity('users')
 export class User extends Timestamp {
