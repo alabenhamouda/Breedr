@@ -84,7 +84,7 @@ export class AnimalService {
   }
 
   update(id: number, updateAnimalDto: UpdateAnimalDto) {
-    return `This action updates a #${id} animal`; 
+    return `This action updates a #${id} animal`;
   }
 
   remove(id: number) {
@@ -95,5 +95,11 @@ export class AnimalService {
     return this.animalRepository.findAndCount(
       filter as FindManyOptions<Animal>,
     );
+  }
+  async getAnimalsByUser(ownerId: string): Promise<Animal[]> {
+    return await this.animalRepository.find({
+      where: { ownerId },
+      relations: { images: true },
+    });
   }
 }
