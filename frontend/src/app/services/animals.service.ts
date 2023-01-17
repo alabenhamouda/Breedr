@@ -4,11 +4,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Animal } from '../models/animal';
 import { addAnimalDto } from '../dto/addAnimalDto';
-import { BASE_URL } from '../helpers/constants';
 import { AuthService } from './auth.service';
 import {Constants} from "../constants/Constants";
-import {Request} from "../models/request";
-import {LoginResponseDto} from "../dto/loginResponseDto";
 import {BASE_URL, LOGIN_URL} from "../helpers/constants";
 
 @Injectable({

@@ -46,9 +46,17 @@ export class RequestsComponent implements OnInit {
 
     this.requestsByAnimal = groupByAnimal(this.incomingRequests , i =>  (i.to?.id ? i.to.id : '') );
   }
+
+  shouldShowRequest(request:Request){
+    return request.state == RequestStateEnum.UKNOWN
+  }
   approve(request:Request){
     request.state = RequestStateEnum.APPROVED;
-    this.requestsService.alterBreedingRequestState(request).subscribe(x=>console.log(x));
+    this.requestsService.alterBreedingRequestState(request).subscribe(x=>{
+      this.incomingRequests= this.incomingRequests.filter(x => x != request);
+      this.getRequestsByAnimal();
+      console.log(this.incomingRequests);
+    });
   }
 
   decline(request:Request){

@@ -5,7 +5,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Gender } from '../Enums/genderEnum';
 import {RequestsService} from "../services/requests.service";
-import {Request} from "../models/request";
 import {User} from "../models/user";
 import {CreateBreedingRequestDto} from "../dto/create-breeding-request.dto";
 import { HttpErrorResponse } from '@angular/common/http';
@@ -26,8 +25,8 @@ export class AnimalDetailsComponent implements OnInit {
   constructor(
     private animalsService: AnimalsService,
     private route: ActivatedRoute,
-    private router: Router
-    private requestsService: RequestsService,
+    private router: Router,
+    private requestsService: RequestsService
   ) {
     this.images = [
       {

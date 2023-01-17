@@ -18,15 +18,12 @@ import { AnimalComponent } from './animal/animal.component';
 import { AnimalsFilterComponent } from './animals-filter/animals-filter.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthGuard } from "./guards/auth.guard";
 import { AddAnimalComponent } from './add-animal/add-animal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AnimalItemComponent } from './animal-item/animal-item.component';
 import { LoadingCircleComponent } from './loading-circle/loading-circle.component';
 import { DatepipePipe } from './datepipe.pipe';
-import {ReactiveFormsModule} from "@angular/forms";
 import {AuthGuard} from "./guards/auth.guard";
-import {RequestsComponent} from "./requests/requests.component";
 
 @NgModule({
   declarations: [

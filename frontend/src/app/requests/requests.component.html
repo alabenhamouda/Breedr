@@ -9,9 +9,11 @@
             {{requestsByAnimal[animal.id] ? requestsByAnimal[animal.id].length : 0 }}</span>
             </button>
           </h2>
-          <div id="collapse{{i}}" *ngFor="let incomingRequest of requestsByAnimal[animal.id] "class="list-group accordion-collapse collapse" data-bs-parent="#myAccordion">
-            <div class="card-body list-group-item">
-              <p>{{incomingRequest.from.email}} {{incomingRequest.from.phoneNumber}}</p><button class ="btn btn-success " (click)="approve(incomingRequest)">approve</button><button class ="btn btn-danger m-2" (click)="decline(incomingRequest)">decline</button></div>
+          <div  id="collapse{{i}}" *ngFor="let incomingRequest of requestsByAnimal[animal.id] "class="list-group accordion-collapse collapse" data-bs-parent="#myAccordion">
+            <div *ngIf="shouldShowRequest(incomingRequest)" class="card-body list-group-item">
+              <p>full name : {{incomingRequest.from.fullname}}</p>
+              <p>phone number : {{incomingRequest.from.phoneNumber}}</p>
+              <button class ="btn btn-success " (click)="approve(incomingRequest)">approve</button><button class ="btn btn-danger m-2" (click)="decline(incomingRequest)">decline</button></div>
           </div>
         </div>
         </div>
