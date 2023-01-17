@@ -23,7 +23,6 @@ export class AnimalsListComponent implements OnInit {
     filter.shouldBringImages = true;
     filter.shouldEncodeImages = true;
     this.httpClient.get<Animal[]>(animalURL, { params: filter }).subscribe((animals) => {
-      console.log(animals);
       this.isLoading = false;
       this.animalList = animals;
     });
