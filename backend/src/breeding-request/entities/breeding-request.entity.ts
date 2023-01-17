@@ -1,4 +1,4 @@
-import { Animal } from './../../animal/entities/animal.entity';
+import { Animal } from '../../animal/entities/animal.entity';
 import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from 'typeorm';
 import { RequestStateEnum } from '../../util/enums/requestState.enum';
 import {User} from "../../user/entities/user.entity";

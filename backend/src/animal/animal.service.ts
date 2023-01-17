@@ -53,6 +53,7 @@ export class AnimalService {
         ownerId
       }
     });
+
     return animals;
   }
 

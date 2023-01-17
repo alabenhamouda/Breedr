@@ -3,6 +3,7 @@ import {RequestsService} from "../services/requests.service";
 import {Request} from "../models/request";
 import {Animal} from "../models/animal";
 import {AnimalsService} from "../services/animals.service";
+import {RequestStateEnum} from "../Enums/RequestStateEnum";
 
 @Component({
   selector: 'app-requests',
@@ -20,14 +21,15 @@ export class RequestsComponent implements OnInit {
               private animalsService : AnimalsService) { }
 
   ngOnInit(): void {
-    this.user = localStorage.getItem('user');
+    this.user = JSON.parse(localStorage.getItem('user')|| '{}');
     this.userId = this.user.id;
+    console.log(localStorage.getItem('user'));
     this.animalsService.getAnimals(this.userId,true,true).subscribe(x=>{
       this.myAnimals = x;
 
     });
 
-    this.requestsService.getBreedingRequests().subscribe((requests)=>{
+    this.requestsService.getBreedingRequests(RequestStateEnum.UKNOWN).subscribe((requests)=>{
       this.incomingRequests = requests;
       this.getRequestsByAnimal();
       console.log(this.requestsByAnimal)
@@ -44,11 +46,14 @@ export class RequestsComponent implements OnInit {
 
     this.requestsByAnimal = groupByAnimal(this.incomingRequests , i =>  (i.to?.id ? i.to.id : '') );
   }
-  approve(request:any){
-    console.log(request)
+  approve(request:Request){
+    request.state = RequestStateEnum.APPROVED;
+    this.requestsService.alterBreedingRequestState(request).subscribe(x=>console.log(x));
   }
-  decline(request:any){
-    console.log(request)
+
+  decline(request:Request){
+    request.state = RequestStateEnum.REJECTED;
+    this.requestsService.alterBreedingRequestState(request).subscribe(x=>console.log(x));
   }
 
 }
