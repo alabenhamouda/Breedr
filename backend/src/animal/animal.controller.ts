@@ -10,7 +10,6 @@ import {
   Query,
   ParseBoolPipe,
   UseInterceptors,
-  DefaultValuePipe,
 } from '@nestjs/common';
 import { AnimalType } from 'src/util/enums/animal.enum';
 import { Gender } from 'src/util/enums/gender.enum';

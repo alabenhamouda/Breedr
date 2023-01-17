@@ -66,7 +66,7 @@ export class AnimalsFilterComponent implements OnInit {
     if (this.selectedBreed != undefined) {
       params = params.set('breed', this.selectedBreed.toString());
     }
-    const animalURL = Constants.API_URL + '/animals';
+    const animalURL = Constants.API_URL + '/animal';
     this.httpClient.get(animalURL, { params }).subscribe((response) => {
       console.log(response);
     });
