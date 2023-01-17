@@ -3,6 +3,7 @@ export class RouteNames {
   public static ADD_ANIMAL: string = 'animals/add';
   public static ANIMAL_DETAILS: string = 'animals/:id';
   public static LOGIN: string = 'login';
-  static REQUESTS: string = 'requests';
   public static MY_ANIMALS : string = 'myAnimals'
+  public static REQUESTS: string = 'requests';
+
 }

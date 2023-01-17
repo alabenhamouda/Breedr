@@ -17,7 +17,7 @@ export class AnimalsFilterComponent implements OnInit {
   );
   selectedGender: Gender | undefined;
   selectedAnimalType: AnimalType | undefined;
-  selectedBreed: string | undefined;  
+  selectedBreed: string | undefined;
   @Output()
   changeFilterEvent = new EventEmitter<string>();
 

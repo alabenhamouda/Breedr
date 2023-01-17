@@ -6,6 +6,7 @@ import { Animal } from '../models/animal';
 import { addAnimalDto } from '../dto/addAnimalDto';
 import {BASE_URL, MY_ANIMALS_URL} from '../helpers/constants';
 import { FormRecord } from '@angular/forms';
+import {Constants} from "../constants/Constants";
 import { AuthService } from './auth.service';
 import { AnimalType } from '../Enums/animalTypeEnum';
 
@@ -14,6 +15,15 @@ import { AnimalType } from '../Enums/animalTypeEnum';
 })
 export class AnimalsService {
   constructor(private http: HttpClient, private authService: AuthService) { }
+
+  getAnimals(userId:string,
+                     shouldBringImages: boolean,
+                     shouldEncodeImages: boolean): Observable<Animal[]> {
+    const url = `${Constants.API_URL}/animals/`;
+    return this.http.get<Animal[]>(url, {
+      params: { userId ,shouldBringImages },
+    });
+  }
 
   getAnimal(
     id: string,

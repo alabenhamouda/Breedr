@@ -18,7 +18,7 @@ export class AnimalItemComponent implements OnInit {
       return this.images = this.animalsService.getAnimalImagesToDisplay(animal);
     }
     return this.images;
-  } 
+  }
 
   getGenderName(gender: Gender) {
     if (gender == Gender.Male) {

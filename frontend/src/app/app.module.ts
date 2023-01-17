@@ -25,6 +25,7 @@ import { AnimalItemComponent } from './animal-item/animal-item.component';
 import { LoadingCircleComponent } from './loading-circle/loading-circle.component';
 import { DatepipePipe } from './datepipe.pipe';
 import {MyAnimalsComponent} from "./my-animals/my-animals.component";
+import {RequestsComponent} from "./requests/requests.component";
 
 @NgModule({
   declarations: [
@@ -40,7 +41,9 @@ import {MyAnimalsComponent} from "./my-animals/my-animals.component";
     AnimalItemComponent,
     LoadingCircleComponent,
     DatepipePipe,
-    MyAnimalsComponent
+    MyAnimalsComponent,
+    DatepipePipe,
+    RequestsComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,4 +62,4 @@ import {MyAnimalsComponent} from "./my-animals/my-animals.component";
 
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

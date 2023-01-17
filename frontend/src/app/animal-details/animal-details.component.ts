@@ -4,6 +4,9 @@ import { Animal } from './../models/animal';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Gender } from '../Enums/genderEnum';
+import {RequestsService} from "../services/requests.service";
+import {User} from "../models/user";
+import {CreateBreedingRequestDto} from "../dto/create-breeding-request.dto";
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
@@ -18,11 +21,12 @@ export class AnimalDetailsComponent implements OnInit {
     height: '500px',
   };
   animal: Animal;
-
+  user : User;
   constructor(
     private animalsService: AnimalsService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private requestsService: RequestsService
   ) {
     this.images = [
       {
@@ -32,7 +36,7 @@ export class AnimalDetailsComponent implements OnInit {
       },
     ];
     this.animal = new Animal();
-
+    this.user = JSON.parse(localStorage.getItem('user')|| '{}');
     route.params.subscribe((params) => {
       const id: string = params['id'];
       this.loadAnimal(id);
@@ -73,4 +77,12 @@ export class AnimalDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  requestBreeding(){
+    let animalWithoutImage = Object.assign({}, this.animal);
+    animalWithoutImage.images=[]
+    const request : CreateBreedingRequestDto = new CreateBreedingRequestDto(this.user,animalWithoutImage);
+    console.log(request);
+    this.requestsService.addBreedingRequests(request).subscribe(x=>console.log(x))
+  }
 }

@@ -79,10 +79,12 @@ export class AnimalController {
   @UseInterceptors(EncodeAnimalImagesInterceptor)
   @Get()
   findAll(
-    @Query('shouldBringImages', new DefaultValuePipe(false))
-    shouldBringImages: boolean,
+      @Query('userId', new DefaultValuePipe(null))
+      userId,
+      @Query('shouldBringImages', new DefaultValuePipe(false))
+      shouldBringImages: boolean,
   ) {
-    return this.animalService.findAll(shouldBringImages);
+    return this.animalService.findAll(userId,shouldBringImages);
   }
 
   @UseInterceptors(EncodeAnimalImagesInterceptor)

@@ -54,15 +54,19 @@ export class AnimalService {
     return this.animalRepository.save(animal);
   }
 
-  async findAll(shouldBringImages: boolean): Promise<Animal[]> {
+  async findAll(ownerId : string , shouldBringImages: boolean): Promise<Animal[]> {
     if (!shouldBringImages) {
-      return this.animalRepository.find();
+      return this.animalRepository.find({where :{ownerId}});
     }
     const animals = await this.animalRepository.find({
       relations: {
         images: true,
       },
+      where :{
+        ownerId
+      }
     });
+
     return animals;
   }
 
@@ -84,7 +88,7 @@ export class AnimalService {
   }
 
   update(id: number, updateAnimalDto: UpdateAnimalDto) {
-    return `This action updates a #${id} animal`;
+    return `This action updates a #${id} animal`; 
   }
 
   remove(id: number) {
