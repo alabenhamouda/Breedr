@@ -39,7 +39,7 @@ export class AnimalController {
     FilesInterceptor('fileToUpload[]', 10, {
       storage: diskStorage({
         destination: (req, file, cb) => {
-          cb(null, configuration().storageDirectory + '/images');
+          cb(null, path.join(configuration().storageDirectory, "images"));
         },
         filename: function (req, file, cb) {
           const randomName = Array(32)
@@ -48,10 +48,7 @@ export class AnimalController {
             .join('');
           console.log(
             '+++new file uploaded -- FileName:' +
-              process.env.STORAGE_DIRECTORY +
-              '/images/' +
-              randomName +
-              path.extname(file.originalname),
+            path.join(configuration().storageDirectory, "images", randomName + path.extname(file.originalname))
           );
           cb(null, randomName + path.extname(file.originalname));
         },
