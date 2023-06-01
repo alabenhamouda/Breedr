@@ -1,4 +1,4 @@
-name: angular-build
+name: nest-build
 on:
     pull_request:
         paths:
