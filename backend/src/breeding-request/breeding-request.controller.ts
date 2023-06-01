@@ -6,7 +6,6 @@ import {BreedingRequest} from "./entities/breeding-request.entity";
 import {RequestStateEnum} from "../util/enums/requestState.enum";
 
 @Controller('breeding-request')
-export class BreedingRequestController {
   constructor(private readonly breedingRequestService: BreedingRequestService) {}
 
   @Post()
